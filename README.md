@@ -130,16 +130,15 @@ Explore scoring breakdowns, decision drivers, technical reasoning, risks, and al
 ArchPilot follows a hybrid AI and deterministic decision-making pipeline.
 
 ```mermaid
+
 flowchart TD
-    A["Application Description"] --> B["React Frontend"]
-    B --> C["FastAPI Backend"]
-    C --> D["AI Requirement Extractor"]
-    D <-->|"LLM API"| E["Groq"]
-    D --> F["Pydantic Validation"]
-    F --> G["Architecture Scoring Engine"]
-    G --> H["Architecture Alternatives"]
-    H --> I["Scores and Explanations"]
-    I --> J["Results Interface"]
+    A[User Requirements] --> B[React Frontend]
+    B --> C[FastAPI Endpoint]
+    C --> D[LLM Requirement Extraction]
+    D --> E[Pydantic Validation]
+    E --> F[Deterministic Scoring Engine]
+    F --> G[Architecture Recommendation]
+
 ```
 
 ### Decision Pipeline
@@ -175,6 +174,7 @@ Users can modify requirements and evaluate alternative architectural decisions.
 ArchPilot separates natural-language understanding, data validation, architecture evaluation, and presentation into distinct responsibilities.
 
 ```mermaid
+
 flowchart TB
     USER["User"]
 
@@ -205,7 +205,9 @@ flowchart TB
     SCORER --> RESULT
     RESULT --> API_CLIENT
     API_CLIENT --> PAGES
+    ROUTER --> WHATIF
     WHATIF --> SCORER
+
 ```
 
 ---
@@ -287,39 +289,53 @@ This makes it an important alternative for applications that need maintainabilit
 ## Project Structure
 
 ```text
-ai-architecture-decision-engine/
+
+ArchPilot-ai-architecture-decision-engine/
 │
 ├── backend/
 │   ├── app/
-│   │   ├── main.py
-│   │   └── ...
+│   │   ├── api/
+│   │   ├── engine/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   ├── config.py
+│   │   └── main.py
+│   │
 │   ├── tests/
-│   ├── requirements.txt
-│   └── ...
+│   │   ├── test_analyze.py
+│   │   ├── test_extraction.py
+│   │   ├── test_scoring.py
+│   │   ├── test_validation.py
+│   │   └── test_what_if.py
+│   │
+│   ├── .env.example
+│   ├── pytest.ini
+│   └── requirements.txt
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
+│   │   ├── lib/
 │   │   ├── pages/
 │   │   ├── services/
-│   │   ├── hooks/
-│   │   └── ...
+│   │   ├── types/
+│   │   ├── utils/
+│   │   ├── App.tsx
+│   │   ├── index.css
+│   │   └── main.tsx
+│   │
+│   ├── .env.example
 │   ├── package.json
+│   ├── package-lock.json
 │   └── vite.config.ts
 │
 ├── docs/
 │   └── screenshots/
-│       ├── homepage.png
-│       ├── analysis-results.png
-│       ├── analysis-results_01.png
-│       ├── analysis-results_02.png
-│       ├── architecture-comparison.png
-│       ├── what-if-analysis.png
-│       ├── what-if-analysis-results.png
-│       ├── saved-analyses.png
-│       └── decision-reasoning.png
 │
+├── .gitignore
 └── README.md
+
 ```
 
 ---
@@ -336,7 +352,7 @@ ai-architecture-decision-engine/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/RiyaJadhav01/ai-architecture-decision-engine.git
+git clone https://github.com/RiyaJadhav01/ArchPilot-ai-architecture-decision-engine.git
 
 cd ArchPilot-ai-architecture-decision-engine
 ```
@@ -367,9 +383,22 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Configure the required environment variables using the backend's environment configuration as a reference.
 
-Add your Groq API key using the exact environment variable name expected by the application. Do not commit API keys or other secrets to GitHub.
+Configure the backend environment:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Open `backend/.env` and add your Groq API key:
+
+```env
+LLM_PROVIDER=groq
+LLM_MODEL=openai/gpt-oss-120b
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+Keep your API keys private. Never commit `.env` files or credentials to GitHub.
 
 Start the backend:
 
@@ -387,10 +416,19 @@ Interactive API documentation:
 
 ### 3. Frontend Setup
 
+
+### 3. Frontend Setup
+
 Open a separate terminal from the project root:
 
-```bash
+```powershell
 cd frontend
+```
+
+Configure the frontend environment:
+
+```powershell
+Copy-Item .env.example .env
 ```
 
 Install dependencies:
@@ -463,14 +501,19 @@ pytest -v
 
 ArchPilot explores how AI-assisted requirement understanding can be combined with deterministic engineering logic to support more structured software architecture decisions.
 
+
 ## Author
 
 **Riya Jadhav**
 
 Computer Science Undergraduate
 
-- GitHub: [RiyaJadhav01](https://github.com/RiyaJadhav01)
-- Project Repository: https://github.com/RiyaJadhav01/ArchPilot-ai-architecture-decision-engine.git
+- GitHub: [Riya Jadhav](https://github.com/RiyaJadhav01)
+- Project Repository: [ArchPilot](https://github.com/RiyaJadhav01/ArchPilot-ai-architecture-decision-engine)
+
 ---
 
-\<p align="center">   \<strong>ArchPilot\</strong>\<br>   Better architecture decisions start with better requirement analysis. \</p>
+**ArchPilot**
+
+*Better architecture decisions start with better requirement analysis.*
+
