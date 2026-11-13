@@ -1,0 +1,70 @@
+modular_monolith:
+  name: "Modular Monolith"
+  description: "A single deployment unit with strictly enforced internal module boundaries."
+  ideal_use_cases:
+    - "Small to medium teams wanting high productivity"
+    - "Moderate traffic without immediate massive scaling needs"
+  strengths:
+    - small_team
+    - moderate_traffic
+    - medium_complexity
+    - low_operations
+  weaknesses:
+    - extreme_scalability
+    - independent_service_scaling
+
+microservices:
+  name: "Microservices"
+  description: "A collection of small, autonomous services modeled around a business domain."
+  ideal_use_cases:
+    - "Large enterprise teams needing independent deployments"
+    - "Very high traffic and massive scaling requirements"
+  strengths:
+    - high_traffic
+    - independent_scaling
+    - large_team
+  weaknesses:
+    - small_team
+    - low_budget
+    - high_operations
+
+serverless:
+  name: "Serverless"
+  description: "Event-driven cloud architecture where code runs in stateless compute containers."
+  ideal_use_cases:
+    - "Variable or unpredictable traffic patterns"
+    - "Small teams wanting zero server management"
+  strengths:
+    - variable_traffic
+    - small_team
+    - low_operations
+  weaknesses:
+    - long_running_tasks
+    - vendor_lock_in
+
+monolith:
+  name: "Monolith"
+  description: "Traditional unified unit for building a single-tiered application."
+  ideal_use_cases:
+    - "Early-stage MVPs and startups"
+    - "Small teams with tight initial deadlines"
+  strengths:
+    - speed_to_market
+    - simple_deployment
+    - low_complexity
+  weaknesses:
+    - scaling_bottlenecks
+    - code_base_bloat
+
+event_driven:
+  name: "Event-Driven"
+  description: "Architecture built around the production, detection, consumption of, and reaction to events."
+  ideal_use_cases:
+    - "Asynchronous data processing and real-time streaming"
+    - "Decoupled distributed systems"
+  strengths:
+    - high_decoupling
+    - asynchronous_processing
+  weaknesses:
+    - debugging_complexity
+    - event_ordering_challenges
